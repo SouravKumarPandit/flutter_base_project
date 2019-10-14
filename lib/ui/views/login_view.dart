@@ -18,34 +18,41 @@ class _LoginViewState extends State<LoginView> {
   @override
   Widget build(BuildContext context) {
     return BaseWidget(
-      builder: (context, sizingInfo) => BaseView<LoginModel>(
-        builder: (context, model, child) => Scaffold(
-          backgroundColor: backgroundColor,
-          body: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: <Widget>[
-              LoginHeader(
-                  validationMessage: model.errorMessage,
-                  controller: _controller),
-              model.state == ViewState.Busy
-                  ? CircularProgressIndicator()
-                  : FlatButton(
-                      color: Colors.white,
-                      child: Text(
-                        'Your name',
-                        style: TextStyle(color: Colors.black),
-                      ),
-                      onPressed: () async {
-                        var loginSuccess = await model.login(_controller.text);
-                        if (loginSuccess) {
-                          Navigator.pushNamed(context, '/');
-                        }
-                      },
-                    )
-            ],
+      builder: (context,sizingInfo)=>
+
+          BaseView<LoginModel>(
+            builder: (context, model, child) => Scaffold(
+              backgroundColor: backgroundColor,
+              body: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: <Widget>[
+                  LoginHeader(
+                      validationMessage: model.errorMessage,
+                      controller: _controller),
+                  model.state == ViewState.Busy
+                      ? CircularProgressIndicator()
+                      : FlatButton(
+                    color: Colors.white,
+                    child: Text(
+                      'user number',
+                      style: TextStyle(color: Colors.black),
+                    ),
+                    onPressed: () async {
+                      var loginSuccess = await model.login(_controller.text);
+                      if(loginSuccess){
+                        Navigator.pushNamed(context, '/');
+                      }
+                    },
+                  ),
+                  FloatingActionButton(onPressed: (){
+                    model.doThings();
+
+                  },child: Icon(Icons.do_not_disturb_alt),)
+
+                ],),
+            ),
           ),
-        ),
-      ),
+
     );
   }
 }

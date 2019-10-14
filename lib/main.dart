@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_base_project/core/services/authentication_service.dart';
 import 'package:flutter_base_project/locator.dart';
+import 'package:flutter_base_project/managers/dialog_manager.dart';
 import 'package:flutter_base_project/ui/router.dart';
 import 'package:provider/provider.dart';
 
@@ -20,15 +21,21 @@ class MyApp extends StatelessWidget {
           statusBarColor: Colors.transparent,
           statusBarIconBrightness: Brightness.dark),
     );
-    return  StreamProvider<User>(
-          initialData: User.initial(),
-          builder: (context) =>  locator<AuthenticationService>().userController,
-          child: MaterialApp(
-            title: 'Flutter Demo',
-            theme: ThemeData(),
-            initialRoute: '/login',
-            onGenerateRoute: BaseRouter.generateRoute,
-          ),
+    return StreamProvider<User>(
+      initialData: User.initial(),
+      builder: (context) => locator<AuthenticationService>().userController,
+      child: MaterialApp(
+        builder: (context, widget) => Navigator(
+          onGenerateRoute: (settings) => MaterialPageRoute(
+              builder: (context) => DialogManager(
+                    child: widget,
+                  )),
+        ),
+        title: 'Flutter Demo',
+        theme: ThemeData(),
+        initialRoute: '/login',
+        onGenerateRoute: BaseRouter.generateRoute,
+      ),
     );
   }
 }

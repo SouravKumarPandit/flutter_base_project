@@ -1,3 +1,4 @@
+import 'package:flutter_base_project/core/services/dialog_service.dart';
 import 'package:get_it/get_it.dart';
 
 import 'core/services/api.dart';
@@ -14,4 +15,5 @@ void setupLocator() {
   locator.registerFactory(() => LoginModel());
   locator.registerFactory(() => HomeModel());
   locator.registerFactory(() => CommentsModel());
+  locator.registerLazySingleton(() => DialogService());
 }
