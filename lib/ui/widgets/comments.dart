@@ -4,7 +4,7 @@ import 'package:flutter_base_project/core/models/comment.dart';
 import 'package:flutter_base_project/core/viewmodels/comments_model.dart';
 import 'package:flutter_base_project/ui/shared/app_colors.dart';
 import 'package:flutter_base_project/ui/shared/ui_helpers.dart';
-import 'package:flutter_base_project/ui/views/base_view.dart';
+import 'package:flutter_base_project/ui/base/base_view.dart';
 
 class Comments extends StatelessWidget {
   final int postId;

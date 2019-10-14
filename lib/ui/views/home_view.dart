@@ -10,7 +10,7 @@ import 'package:flutter_base_project/ui/shared/ui_helpers.dart';
 import 'package:flutter_base_project/ui/widgets/postlist_item.dart';
 import 'package:provider/provider.dart';
 
-import 'base_view.dart';
+import '../base/base_view.dart';
 
 class HomeView extends StatelessWidget {
   @override
