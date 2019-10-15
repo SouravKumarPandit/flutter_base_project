@@ -43,7 +43,6 @@ class LoginModel extends BaseModel {
     } else {
       print('User cancelled the dialog');
     }
-    setState(ViewState.Busy);
   }
 
 }

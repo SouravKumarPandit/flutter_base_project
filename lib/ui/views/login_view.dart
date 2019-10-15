@@ -13,7 +13,7 @@ class LoginView extends StatefulWidget {
 }
 
 class _LoginViewState extends State<LoginView> {
-  final TextEditingController _controller = TextEditingController();
+  final TextEditingController _controller = TextEditingController(text: '1');
 
   @override
   Widget build(BuildContext context) {
@@ -32,22 +32,22 @@ class _LoginViewState extends State<LoginView> {
                   model.state == ViewState.Busy
                       ? CircularProgressIndicator()
                       : FlatButton(
-                    color: Colors.white,
+                    color: Theme.of(context).accentColor,
                     child: Text(
-                      'user number',
-                      style: TextStyle(color: Colors.black),
+                      'USER NUMBER',
+                      style: TextStyle(color: Colors.white),
                     ),
                     onPressed: () async {
-                      var loginSuccess = await model.login(_controller.text);
+                      final loginSuccess = await model.login(_controller.text);
                       if(loginSuccess){
-                        Navigator.pushNamed(context, '/');
+                        await Navigator.pushNamed(context, '/');
                       }
                     },
                   ),
-                  FloatingActionButton(onPressed: (){
+                  MaterialButton(color: Theme.of(context).accentColor,onPressed: (){
                     model.doThings();
 
-                  },child: Icon(Icons.do_not_disturb_alt),)
+                  },child: Text('Show Dialog',style: TextStyle(color: Colors.white),),)
 
                 ],),
             ),
