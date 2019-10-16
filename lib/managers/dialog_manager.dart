@@ -1,5 +1,3 @@
-
-
 import 'package:flutter/material.dart';
 import 'package:flutter_base_project/core/models/alert_request.dart';
 import 'package:flutter_base_project/core/models/alert_response.dart';
@@ -9,6 +7,7 @@ import 'package:rflutter_alert/rflutter_alert.dart';
 
 class DialogManager extends StatefulWidget {
   final Widget child;
+
   DialogManager({Key key, this.child}) : super(key: key);
 
   _DialogManagerState createState() => _DialogManagerState();

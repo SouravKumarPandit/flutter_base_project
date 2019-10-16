@@ -3,6 +3,7 @@ import 'package:flutter_base_project/core/enums/viewstate.dart';
 import 'package:flutter_base_project/core/viewmodels/login_model.dart';
 import 'package:flutter_base_project/ui/base/base_widget.dart';
 import 'package:flutter_base_project/ui/shared/app_colors.dart';
+import 'package:flutter_base_project/ui/utils/fonts/font_icons.dart';
 import 'package:flutter_base_project/ui/widgets/login_header.dart';
 
 import '../base/base_view.dart';
@@ -29,6 +30,8 @@ class _LoginViewState extends State<LoginView> {
                   LoginHeader(
                       validationMessage: model.errorMessage,
                       controller: _controller),
+                  Icon(FontIcons.thumbs_up_alt,size: 25,color: Colors.orange,),
+
                   model.state == ViewState.Busy
                       ? CircularProgressIndicator()
                       : FlatButton(

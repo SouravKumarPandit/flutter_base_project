@@ -17,7 +17,7 @@ class DialogService {
   Future<AlertResponse> showDialog(
       {String title, String description, String buttonTitle = 'OK'}) {
     _dialogCompleter = Completer<AlertResponse>();
-    _showDialogListener(AlertRequest(
+    _showDialogListener (AlertRequest(
       title: title,
       description: description,
       buttonTitle: buttonTitle,

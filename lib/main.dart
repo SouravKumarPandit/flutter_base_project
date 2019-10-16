@@ -5,7 +5,6 @@ import 'package:flutter_base_project/locator.dart';
 import 'package:flutter_base_project/managers/dialog_manager.dart';
 import 'package:flutter_base_project/ui/router.dart';
 import 'package:provider/provider.dart';
-
 import 'core/models/user.dart';
 
 void main() {
@@ -25,16 +24,22 @@ class MyApp extends StatelessWidget {
       initialData: User.initial(),
       builder: (context) => locator<AuthenticationService>().userController,
       child: MaterialApp(
+        title: 'Flutter Demo',
+        theme: ThemeData(
+//          Todo change the theme based on app
+//          fontFamily: 'Garamond',
+//            primaryColor: primaryColor,
+//            scaffoldBackgroundColor: primaryColor,
+//          canvasColor: Colors.black,
+        ),
         builder: (context, widget) => Navigator(
           onGenerateRoute: (settings) => MaterialPageRoute(
               builder: (context) => DialogManager(
                     child: widget,
                   )),
         ),
-        title: 'Flutter Demo',
-        theme: ThemeData(),
-        initialRoute: '/login',
-        onGenerateRoute: BaseRouter.generateRoute,
+        initialRoute: AppRouter.LOGIN,
+        onGenerateRoute: AppRouter.generateRoute,
       ),
     );
   }
