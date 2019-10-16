@@ -27,7 +27,7 @@ class MyApp extends StatelessWidget {
         title: 'Flutter Demo',
         theme: ThemeData(
 //          Todo change the theme based on app
-//          fontFamily: 'Garamond',
+          fontFamily: 'Montserrat',
 //            primaryColor: primaryColor,
 //            scaffoldBackgroundColor: primaryColor,
 //          canvasColor: Colors.black,

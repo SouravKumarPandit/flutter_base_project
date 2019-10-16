@@ -72,6 +72,17 @@ flutter:
           weight: 700
           style: italic
 
+    - family: Montserrat
+      fonts:
+        - asset: assets/fonts/open_san/OpenSans-Regular.ttf
+        - asset: assets/fonts/open_san/OpenSans-Italic.ttf
+          style: italic
+        - asset: assets/fonts/open_san/OpenSans-Bold.ttf
+          weight: 700
+        - asset: assets/fonts/open_san/OpenSans-BoldItalic.ttf
+          weight: 700
+          style: italic
+
     - family:  FontIcons
       fonts:
        - asset: assets/icons/FontIcons.ttf
