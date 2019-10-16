@@ -36,7 +36,7 @@ class LoginModel extends BaseModel {
     print('dialog shown');
     var dialogResult = await _dialogService.showDialog(
         title: 'Dialog Manager',
-        description: 'singlton dialog with dialog manager');
+        description: 'singlton dialog from  dialog manager');
 
     if (dialogResult.confirmed) {
       print('User has confirmed');
