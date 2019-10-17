@@ -12,6 +12,7 @@ class RepositoryService {
   // Iterate over sources when dbprovider
   // get fetchTopIds implemented
   Future<List<int>> fetchTopIds() {
+    return null;
   }
 
   clearCache() async {

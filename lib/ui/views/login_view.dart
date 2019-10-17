@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_base_project/const_value.dart';
 import 'package:flutter_base_project/core/enums/viewstate.dart';
 import 'package:flutter_base_project/core/viewmodels/login_model.dart';
 import 'package:flutter_base_project/ui/base/base_widget.dart';
@@ -19,43 +20,55 @@ class _LoginViewState extends State<LoginView> {
   @override
   Widget build(BuildContext context) {
     return BaseWidget(
-      builder: (context,sizingInfo)=>
-
-          BaseView<LoginModel>(
-            builder: (context, model, child) => Scaffold(
-              backgroundColor: backgroundColor,
-              body: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: <Widget>[
-                  LoginHeader(
-                      validationMessage: model.errorMessage,
-                      controller: _controller),
-                  Icon(FontIcons.thumbs_up_alt,size: 25,color: Colors.orange,),
-
-                  model.state == ViewState.Busy
-                      ? CircularProgressIndicator()
-                      : FlatButton(
-                    color: Theme.of(context).accentColor,
-                    child: Text(
-                      'USER NUMBER',
-                      style: TextStyle(color: Colors.white),
+      builder: (context, sizingInfo) => BaseView<LoginModel>(
+        builder: (context, model, child) => Scaffold(
+          backgroundColor: backgroundColor,
+          body: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: <Widget>[
+              LoginHeader(
+                  validationMessage: model.errorMessage,
+                  controller: _controller),
+              Icon(
+                FontIcons.thumbs_up_alt,
+                size: 25,
+                color: Colors.blueAccent,
+              ),
+              Image.asset(
+                VConstants.RESOURCE_CONST.appLogo,
+                height: 100,
+                width: 100,
+              ),
+              model.state == ViewState.Busy
+                  ? CircularProgressIndicator()
+                  : FlatButton(
+                      color: Theme.of(context).accentColor,
+                      child: Text(
+                        VConstants.STRING_CONST.appName,
+                        style: TextStyle(color: Colors.white),
+                      ),
+                      onPressed: () async {
+                        final loginSuccess =
+                            await model.login(_controller.text);
+                        if (loginSuccess) {
+                          await Navigator.pushNamed(context, '/');
+                        }
+                      },
                     ),
-                    onPressed: () async {
-                      final loginSuccess = await model.login(_controller.text);
-                      if(loginSuccess){
-                        await Navigator.pushNamed(context, '/');
-                      }
-                    },
-                  ),
-                  MaterialButton(color: Theme.of(context).accentColor,onPressed: (){
-                    model.doThings();
-
-                  },child: Text('Show Dialog',style: TextStyle(color: Colors.white),),)
-
-                ],),
-            ),
+              MaterialButton(
+                color: Theme.of(context).accentColor,
+                onPressed: () {
+                  model.doThings();
+                },
+                child: Text(
+                  'Show Dialog',
+                  style: TextStyle(color: Colors.white),
+                ),
+              )
+            ],
           ),
-
+        ),
+      ),
     );
   }
 }

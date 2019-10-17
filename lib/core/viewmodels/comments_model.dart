@@ -2,7 +2,7 @@ import 'package:flutter_base_project/core/enums/viewstate.dart';
 import 'package:flutter_base_project/core/models/comment.dart';
 import 'package:flutter_base_project/core/services/api.dart';
 import 'package:flutter_base_project/locator.dart';
-import 'package:get_it/get_it.dart';
+
 import 'base_model.dart';
 
 class CommentsModel extends BaseModel {

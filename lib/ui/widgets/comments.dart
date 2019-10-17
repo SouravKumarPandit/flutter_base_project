@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_base_project/const_value.dart';
 import 'package:flutter_base_project/core/enums/viewstate.dart';
 import 'package:flutter_base_project/core/models/comment.dart';
 import 'package:flutter_base_project/core/viewmodels/comments_model.dart';
@@ -12,6 +13,7 @@ class Comments extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+
     return BaseView<CommentsModel>(
       onModelReady: (model) => model.fetchComments(postId),
       builder: (context, model, child) => model.state == ViewState.Busy
