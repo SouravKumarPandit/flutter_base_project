@@ -9,7 +9,7 @@ import 'package:provider/provider.dart';
 
 class PostView extends StatelessWidget {
   final Post post;
-  PostView({this.post});
+  const PostView({Key key, this.post}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -20,13 +20,13 @@ class PostView extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
-            UIHelper.verticalSpaceLarge(),
+            UIHelper.verticalSpaceLarge,
             Text(post.title, style: headerStyle),
             Text(
               'by ${Provider.of<User>(context).name}',
               style: TextStyle(fontSize: 9.0),
             ),
-            UIHelper.verticalSpaceMedium(),
+            UIHelper.verticalSpaceMedium,
             Text(post.body),
             Comments(post.id)
           ],

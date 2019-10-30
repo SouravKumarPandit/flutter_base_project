@@ -1,14 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_base_project/core/services/authentication_service.dart';
-import 'package:flutter_base_project/locator.dart';
 import 'package:flutter_base_project/managers/dialog_manager.dart';
+import 'package:flutter_base_project/provider_setup.dart';
 import 'package:flutter_base_project/ui/router.dart';
 import 'package:provider/provider.dart';
-import 'core/models/user.dart';
 
 void main() {
-  setupLocator();
+//  setupLocator();
   runApp(MyApp());
 }
 
@@ -20,9 +18,8 @@ class MyApp extends StatelessWidget {
           statusBarColor: Colors.transparent,
           statusBarIconBrightness: Brightness.dark),
     );
-    return StreamProvider<User>(
-      initialData: User.initial(),
-      builder: (context) => locator<AuthenticationService>().userController,
+    return MultiProvider(
+      providers: providers,
       child: MaterialApp(
         title: 'Flutter Demo',
         theme: ThemeData(

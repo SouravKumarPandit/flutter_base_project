@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_base_project/core/models/alert_request.dart';
 import 'package:flutter_base_project/core/models/alert_response.dart';
 import 'package:flutter_base_project/core/services/dialog_service.dart';
-import 'package:flutter_base_project/locator.dart';
 import 'package:rflutter_alert/rflutter_alert.dart';
 
 class DialogManager extends StatefulWidget {
@@ -14,11 +13,12 @@ class DialogManager extends StatefulWidget {
 }
 
 class _DialogManagerState extends State<DialogManager> {
-  DialogService _dialogService = locator<DialogService>();
+  DialogService _dialogService;
 
   @override
   void initState() {
     super.initState();
+    _dialogService = new DialogService();
     _dialogService.registerDialogListener(_showDialog);
   }
 

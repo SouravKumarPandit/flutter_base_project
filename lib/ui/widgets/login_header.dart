@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_base_project/ui/shared/text_styles.dart';
 import 'package:flutter_base_project/ui/shared/ui_helpers.dart';
-
 class LoginHeader extends StatelessWidget {
   final TextEditingController controller;
   final String validationMessage;
@@ -12,7 +11,7 @@ class LoginHeader extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(children: <Widget>[
       Text('Login', style: headerStyle),
-      UIHelper.verticalSpaceMedium(),
+      UIHelper.verticalSpaceMedium,
       Text('Enter a number between 1 - 10', style: subHeaderStyle),
       LoginTextField(controller),
       this.validationMessage != null

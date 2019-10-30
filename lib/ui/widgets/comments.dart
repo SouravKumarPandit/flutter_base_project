@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_base_project/const_value.dart';
-import 'package:flutter_base_project/core/enums/viewstate.dart';
 import 'package:flutter_base_project/core/models/comment.dart';
-import 'package:flutter_base_project/core/viewmodels/comments_model.dart';
+import 'package:flutter_base_project/core/viewmodels/widgets/comments_model.dart';
+import 'package:flutter_base_project/ui/base/base_widget.dart';
 import 'package:flutter_base_project/ui/shared/app_colors.dart';
 import 'package:flutter_base_project/ui/shared/ui_helpers.dart';
-import 'package:flutter_base_project/ui/base/base_view.dart';
+import 'package:provider/provider.dart';
 
 class Comments extends StatelessWidget {
   final int postId;
@@ -13,16 +12,20 @@ class Comments extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-
-    return BaseView<CommentsModel>(
-      onModelReady: (model) => model.fetchComments(postId),
-      builder: (context, model, child) => model.state == ViewState.Busy
-      ? Center(child: CircularProgressIndicator())
-      : Expanded(child: ListView(
-        children: model.comments
-                  .map((comment) => CommentItem(comment)).toList(),
-      ),)
-    );
+    return BaseWidget<CommentsModel>(
+        onModelReady: (model) => model.fetchComments(postId),
+        model: CommentsModel(api: Provider.of(context)),
+        builder: (context, model, child) => model.busy
+            ? Center(
+                child: CircularProgressIndicator(),
+              )
+            : Expanded(
+                child: ListView.builder(
+                  itemCount: model.comments.length,
+                  itemBuilder: (context, index) =>
+                      CommentItem(model.comments[index]),
+                ),
+              ));
   }
 }
 
@@ -45,7 +48,7 @@ class CommentItem extends StatelessWidget {
             comment.name,
             style: TextStyle(fontWeight: FontWeight.bold),
           ),
-          UIHelper.verticalSpaceSmall(),
+          UIHelper.verticalSpaceSmall,
           Text(comment.body),
         ],
       ),
