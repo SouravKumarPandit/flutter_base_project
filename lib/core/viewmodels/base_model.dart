@@ -8,4 +8,8 @@ class BaseModel extends ChangeNotifier {
     _busy = value;
     notifyListeners();
   }
+
+  void onResponseError(String message){
+
+  }
 }

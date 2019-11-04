@@ -3,7 +3,6 @@ import 'package:flutter_base_project/core/viewmodels/views/login_view_model.dart
 import 'package:flutter_base_project/ui/base/base_widget.dart';
 import 'package:flutter_base_project/ui/router.dart';
 import 'package:flutter_base_project/ui/shared/app_colors.dart';
-import 'package:flutter_base_project/ui/widgets/login_header.dart';
 import 'package:provider/provider.dart';
 
 class LoginView extends StatefulWidget {
@@ -18,7 +17,7 @@ class _LoginViewState extends State<LoginView> {
   Widget build(BuildContext context) {
     return BaseWidget<LoginViewModel>(
       model: LoginViewModel(authenticationService: Provider.of(context)),
-      child: LoginHeader(controller: _controller),
+//      child: LoginHeader(controller: _controller),
       builder: (context, model, child) => Scaffold(
           backgroundColor: backgroundColor,
           body: Column(
