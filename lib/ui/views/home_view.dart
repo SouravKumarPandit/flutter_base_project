@@ -5,6 +5,7 @@ import 'package:flutter_base_project/ui/shared/text_styles.dart';
 import 'package:flutter_base_project/ui/shared/ui_helpers.dart';
 import 'package:flutter_base_project/ui/widgets/posts.dart';
 import 'package:provider/provider.dart';
+
 class HomeView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {

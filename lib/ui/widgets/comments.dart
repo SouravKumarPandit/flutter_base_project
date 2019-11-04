@@ -17,7 +17,7 @@ class Comments extends StatelessWidget {
         model: CommentsModel(api: Provider.of(context)),
         builder: (context, model, child) => model.busy
             ? Center(
-                child: child.reuseChildren[0],
+                child: CircularProgressIndicator(),
               )
             : Expanded(
                 child: ListView.builder(
