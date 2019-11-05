@@ -18,13 +18,13 @@ class _LoginViewState extends State<LoginView> {
   Widget build(BuildContext context) {
     return BaseWidget<LoginViewModel>(
       model: LoginViewModel(authenticationService: Provider.of(context)),
-      child: LoginHeader(controller: _controller),
+      child: ReusableChildren(getChildrenObjects()),
       builder: (context, model, child) => Scaffold(
           backgroundColor: backgroundColor,
           body: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
-              child,
+              (child as ReusableChildren).children[0],
               model.busy
                   ? CircularProgressIndicator()
                   : FlatButton(
@@ -43,5 +43,9 @@ class _LoginViewState extends State<LoginView> {
             ],
           )),
     );
+  }
+
+  List<Widget> getChildrenObjects() {
+    return [LoginHeader(controller: _controller)];
   }
 }

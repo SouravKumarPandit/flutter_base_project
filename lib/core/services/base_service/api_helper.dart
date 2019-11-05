@@ -13,7 +13,7 @@ class ApiBaseHelper {
       final response = await http.get(_baseUrl + url);
       responseJson = _returnResponse(response);
     } on SocketException {
-      throw FetchDataException('No Internet connection');
+//      throw FetchDataException('No Internet connection');
     }
     return responseJson;
   }

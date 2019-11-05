@@ -13,7 +13,7 @@ class Posts extends StatelessWidget {
   Widget build(BuildContext context) {
     return BaseWidget<PostsModel>(
         model: PostsModel(api: Provider.of(context)),
-        onModelReady: (model) => model.getPosts(Provider.of<User>(context).id),
+        onModelReady: (model) => model.getPosts(Provider.of<User>(context)?.id),
         builder: (context, model, child) => model.busy
             ? Center(
                 child: CircularProgressIndicator(),

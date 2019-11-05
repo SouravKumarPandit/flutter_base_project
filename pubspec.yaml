@@ -44,6 +44,7 @@ dev_dependencies:
   json_serializable: ^3.2.3
   build_runner: ^1.7.1
   flutter_launcher_icons: ^0.7.3
+#  flutter_stetho: ^0.5.0
 #  moor_generator: ^2.0.1
 #  built_value_generator: ^6.7.1
 

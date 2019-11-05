@@ -18,7 +18,7 @@ class HomeView extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.only(left: 20.0),
             child: Text(
-              'Welcome ${Provider.of<User>(context).name}',
+              'Welcome ${Provider.of<User>(context)?.name}',
               style: headerStyle,
             ),
           ),

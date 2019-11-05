@@ -2,11 +2,11 @@ import 'dart:convert';
 import 'package:flutter_base_project/core/models/comment.dart';
 import 'package:flutter_base_project/core/models/post.dart';
 import 'package:flutter_base_project/core/models/user.dart';
-import 'package:flutter_base_project/core/services/response_state.dart';
+import 'package:flutter_base_project/core/services/base_service/api_helper.dart';
 import 'package:http/http.dart' as http;
 
 /// The service responsible for networking requests
-class Api {
+class Api extends ApiBaseHelper {
   static const endpoint = 'https://jsonplaceholder.typicode.com';
 
   var client = new http.Client();
@@ -21,12 +21,8 @@ class Api {
 
   Future<List<Post>> getPostsForUser(int userId) async {
     var posts = List<Post>();
-    // Get user posts for id
-//    if (response.statusCode == 200)
-//      return ResponseState<Photos>.success(Photos.fromJson(json.decode(response.body)));
-//    else
-//      return ResponseState<String>.error(response.statusCode.toString());
 
+    // Get user posts for id
     var response = await client.get('$endpoint/posts?userId=$userId');
 
     // parse into List

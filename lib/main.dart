@@ -4,9 +4,8 @@ import 'package:flutter_base_project/managers/dialog_manager.dart';
 import 'package:flutter_base_project/provider_setup.dart';
 import 'package:flutter_base_project/ui/router.dart';
 import 'package:provider/provider.dart';
-
 void main() {
-//  setupLocator();
+//  Stetho.initialize();
   runApp(MyApp());
 }
 
@@ -23,7 +22,6 @@ class MyApp extends StatelessWidget {
       child: MaterialApp(
         title: 'Flutter Demo',
         theme: ThemeData(
-//          Todo change the theme based on app
           fontFamily: 'Montserrat',
 //            primaryColor: primaryColor,
 //            scaffoldBackgroundColor: primaryColor,
