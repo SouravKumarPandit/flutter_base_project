@@ -53,13 +53,13 @@ abstract class BaseState<M extends BaseModel, T extends StatefulWidget>
 
   List<Widget> reuseChildren();
 
-  Widget stateWidgetBuilder(BuildContext context, M value, ChildrenHolder childrenHolder);
+  Widget stateWidgetBuilder(BuildContext context, ChildrenHolder childrenHolder);
 
   Widget _loadingProgressBuilder(
-      BuildContext context, M value, Widget childrenHolder) {
+      BuildContext context,M baseModel, Widget childrenHolder) {
     return LoadingProgressWidget(
       showIndicator: model.busy,
-      child: stateWidgetBuilder(context, value, childrenHolder),
+      child: stateWidgetBuilder(context, childrenHolder),
     );
   }
 

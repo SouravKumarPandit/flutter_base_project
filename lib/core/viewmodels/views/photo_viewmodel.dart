@@ -3,12 +3,10 @@ const String LoadingIndicatorTitle = '^';
 class PhotoViewModel extends BaseModel {
   Future<void> doSomeNetworkCall() async {
     setBusy(true);
-   return await Future.delayed(Duration(seconds: 10)).then((_) {
+   return await Future.delayed(Duration(seconds: 3)).then((_) {
       setBusy(false);
     });
   }
-
-
 
 
   static const int ItemRequestThreshold = 15;
@@ -18,8 +16,8 @@ class PhotoViewModel extends BaseModel {
 
   int _currentPage = 0;
 
-  HomeViewModel() {
-    _items = List<String>.generate(15, (index) => 'Title $index');
+  PhotoViewModel() {
+    _items = List<String>.generate(25, (index) => 'Title $index');
   }
 
   Future handleItemCreated(int index) async {
