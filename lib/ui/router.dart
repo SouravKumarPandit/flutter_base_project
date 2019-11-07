@@ -3,6 +3,7 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter_base_project/core/models/post.dart';
 import 'package:flutter_base_project/ui/views/home_view.dart';
 import 'package:flutter_base_project/ui/views/login_view.dart';
+import 'package:flutter_base_project/ui/views/photo_view.dart';
 import 'package:flutter_base_project/ui/views/post_view.dart';
 
 const String initialRoute = "login";
@@ -13,11 +14,15 @@ class AppRouter {
   static const String PRACTICE = '/practice';
   static const String POST = '/post';
 
+  static const String PHOTO="/";
+
 //  static const String HOME="/";
 //  static const String HOME="/";
 
   static Route<dynamic> generateRoute(RouteSettings settings) {
     switch (settings.name) {
+      case PHOTO:
+        return MaterialPageRoute(builder: (_) => PhotoView());
       case HOME:
         return MaterialPageRoute(builder: (_) => HomeView());
       case LOGIN:

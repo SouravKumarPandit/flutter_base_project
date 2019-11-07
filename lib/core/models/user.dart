@@ -18,4 +18,18 @@ class User {
       : id = 0,
         name = '',
         username = '';
+/*
+  User.fromDb(Map<String, dynamic> parsedJson)
+      : id = parsedJson['id'],
+        name = parsedJson['name'],
+        username = parsedJson['username'];
+
+
+  Map<String, dynamic> toMap() {
+    return <String, dynamic>{
+      "id": id,
+      "name": name,
+      "username": username,
+    };
+  }*/
 }

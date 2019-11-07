@@ -4,6 +4,7 @@ import 'package:flutter_base_project/managers/dialog_manager.dart';
 import 'package:flutter_base_project/provider_setup.dart';
 import 'package:flutter_base_project/ui/router.dart';
 import 'package:provider/provider.dart';
+
 void main() {
 //  Stetho.initialize();
   runApp(MyApp());
@@ -17,6 +18,7 @@ class MyApp extends StatelessWidget {
           statusBarColor: Colors.transparent,
           statusBarIconBrightness: Brightness.dark),
     );
+
     return MultiProvider(
       providers: providers,
       child: MaterialApp(
@@ -29,11 +31,12 @@ class MyApp extends StatelessWidget {
         ),
         builder: (context, widget) => Navigator(
           onGenerateRoute: (settings) => MaterialPageRoute(
-              builder: (context) => DialogManager(
-                    child: widget,
-                  )),
+            builder: (context) => DialogManager(
+              child: widget,
+            ),
+          ),
         ),
-        initialRoute: AppRouter.LOGIN,
+        initialRoute: AppRouter.PHOTO,
         onGenerateRoute: AppRouter.generateRoute,
       ),
     );

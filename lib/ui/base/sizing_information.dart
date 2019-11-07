@@ -14,8 +14,8 @@ class SizingInformation {
     this.localWidgetSize,
   });
 
-  @override
-  String toString() {
-    return 'Orientation:$orientation DeviceType:$deviceScreenType ScreenSize:$screenSize LocalWidgetSize:$localWidgetSize';
-  }
+//  @override
+//  String toString() {
+//    return 'Orientation:$orientation DeviceType:$deviceScreenType ScreenSize:$screenSize LocalWidgetSize:$localWidgetSize';
+//  }
 }

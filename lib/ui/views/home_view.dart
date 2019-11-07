@@ -9,6 +9,7 @@ import 'package:provider/provider.dart';
 class HomeView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+
     return Scaffold(
       backgroundColor: backgroundColor,
       body: Column(
@@ -27,7 +28,9 @@ class HomeView extends StatelessWidget {
             child: Text('Here are all your posts', style: subHeaderStyle),
           ),
           UIHelper.verticalSpaceSmall,
-          Expanded(child: Posts(),)
+          Expanded(
+            child: Posts(),
+          )
         ],
       ),
     );

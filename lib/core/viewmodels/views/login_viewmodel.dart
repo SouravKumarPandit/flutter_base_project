@@ -1,6 +1,7 @@
 import 'package:flutter/widgets.dart';
 import 'package:flutter_base_project/core/services/authentication_service.dart';
 import 'package:flutter_base_project/core/viewmodels/base_model.dart';
+import 'package:rxdart/rxdart.dart';
 class LoginViewModel extends BaseModel {
   AuthenticationService _authenticationService;
 

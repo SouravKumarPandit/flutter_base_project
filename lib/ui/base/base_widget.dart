@@ -4,7 +4,7 @@ import 'package:provider/provider.dart';
 class BaseWidget<T extends ChangeNotifier> extends StatefulWidget {
   final Widget Function(BuildContext context, T model, Widget child) builder;
   final T model;
-  final ReusableChildren child;
+  final Widget child;
   final Function(T) onModelReady;
 
   BaseWidget({
@@ -41,13 +41,5 @@ class _BaseWidgetState<T extends ChangeNotifier> extends State<BaseWidget<T>> {
         child: widget.child,
       ),
     );
-  }
-}
-class ReusableChildren extends Widget{
-  final List<Widget> children;
-  ReusableChildren(this.children);
-  @override
-  Element createElement() {
-    return null;
   }
 }

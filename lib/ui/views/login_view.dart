@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_base_project/core/viewmodels/views/login_view_model.dart';
+import 'package:flutter_base_project/core/viewmodels/views/login_viewmodel.dart';
 import 'package:flutter_base_project/ui/base/base_widget.dart';
 import 'package:flutter_base_project/ui/router.dart';
 import 'package:flutter_base_project/ui/shared/app_colors.dart';
@@ -18,13 +18,13 @@ class _LoginViewState extends State<LoginView> {
   Widget build(BuildContext context) {
     return BaseWidget<LoginViewModel>(
       model: LoginViewModel(authenticationService: Provider.of(context)),
-      child: ReusableChildren(getChildrenObjects()),
+      child: LoginHeader(controller: _controller),
       builder: (context, model, child) => Scaffold(
           backgroundColor: backgroundColor,
           body: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
-              (child as ReusableChildren).children[0],
+              child,
               model.busy
                   ? CircularProgressIndicator()
                   : FlatButton(
