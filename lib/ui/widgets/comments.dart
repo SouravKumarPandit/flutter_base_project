@@ -4,7 +4,6 @@ import 'package:flutter_base_project/core/viewmodels/widgets/comments_model.dart
 import 'package:flutter_base_project/ui/base/base_widget.dart';
 import 'package:flutter_base_project/ui/shared/app_colors.dart';
 import 'package:flutter_base_project/ui/shared/ui_helpers.dart';
-import 'package:provider/provider.dart';
 
 class Comments extends StatelessWidget {
   final int postId;
@@ -14,7 +13,7 @@ class Comments extends StatelessWidget {
   Widget build(BuildContext context) {
     return BaseWidget<CommentsModel>(
         onModelReady: (model) => model.fetchComments(postId),
-        model: CommentsModel(api: Provider.of(context)),
+        model: CommentsModel(),
         builder: (context, model, child) => model.busy
             ? Center(
                 child: CircularProgressIndicator(),

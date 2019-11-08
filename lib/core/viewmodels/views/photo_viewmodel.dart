@@ -62,10 +62,7 @@ class PhotoViewModel extends BaseViewModel implements IPhotoView {
 
   @override
   void onFetchPhotoList() async {
-//    doSomeNetworkCall();
-
-    var response = await photoService.getRequest(this, ApiConstants.GET_PHOTO);
-    photos = photosFromJson(response);
+    photos = await photoService.fetchPhotoList(this);
   }
 
   @override

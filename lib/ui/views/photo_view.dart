@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/scheduler.dart';
+import 'package:flutter_base_project/core/services/photo_services.dart';
 import 'package:flutter_base_project/core/viewmodels/views/photo_viewmodel.dart';
+import 'package:flutter_base_project/locator.dart';
 import 'package:flutter_base_project/ui/base/base_state.dart';
-import 'package:flutter_base_project/ui/widgets/creation_aware_list_item.dart';
-import 'package:provider/provider.dart';
 
 class PhotoView extends StatefulWidget {
   @override
@@ -18,7 +17,7 @@ class _PhotoViewState extends BaseState<PhotoViewModel, PhotoView> {
 
   @override
   void initViewModel() {
-    model = PhotoViewModel(photoService: Provider.of(context));
+    model = PhotoViewModel(photoService: locator<PhotoService>());
 //    model.doSomeNetworkCall();
   }
 

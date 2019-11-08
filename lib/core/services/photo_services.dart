@@ -1,15 +1,11 @@
+import 'package:flutter_base_project/core/models/photos.dart';
+import 'package:flutter_base_project/core/services/base_service/api_constants.dart';
 import 'package:flutter_base_project/core/services/base_service/api_repository.dart';
-import 'package:flutter_base_project/core/viewmodels/base_model.dart';
 
 class PhotoService extends ApiRepository{
-  ApiRepository apiRepository;
 
-  @override
-  void onResponse(responseJson) {
-    print(responseJson);
+  Future<List<Photos>> fetchPhotoList(model) async {
+    final response = await getRequest(model ,ApiConstants.GET_PHOTO);
+    return photosFromJson(response);
   }
-
-  PhotoService(this.apiRepository);
-
-
 }

@@ -16,9 +16,6 @@ class AppRouter {
 
   static const String PHOTO="/";
 
-//  static const String HOME="/";
-//  static const String HOME="/";
-
   static Route<dynamic> generateRoute(RouteSettings settings) {
     switch (settings.name) {
       case PHOTO:

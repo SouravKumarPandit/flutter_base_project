@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_base_project/locator.dart';
 import 'package:flutter_base_project/managers/dialog_manager.dart';
-import 'package:flutter_base_project/provider_setup.dart';
 import 'package:flutter_base_project/ui/router.dart';
-import 'package:provider/provider.dart';
 
 void main() {
 //  Stetho.initialize();
+  setupLocator();
   runApp(MyApp());
 }
 
@@ -19,26 +19,23 @@ class MyApp extends StatelessWidget {
           statusBarIconBrightness: Brightness.dark),
     );
 
-    return MultiProvider(
-      providers: providers,
-      child: MaterialApp(
-        title: 'Flutter Demo',
-        theme: ThemeData(
-          fontFamily: 'Montserrat',
-//            primaryColor: primaryColor,
-//            scaffoldBackgroundColor: primaryColor,
-//          canvasColor: Colors.black,
-        ),
-        builder: (context, widget) => Navigator(
-          onGenerateRoute: (settings) => MaterialPageRoute(
-            builder: (context) => DialogManager(
-              child: widget,
-            ),
+//    return MultiProvider(
+//      providers: providers,
+    return MaterialApp(
+      title: 'Flutter Demo',
+      theme: ThemeData(
+        fontFamily: 'Montserrat',
+      ),
+      builder: (context, widget) => Navigator(
+        onGenerateRoute: (settings) => MaterialPageRoute(
+          builder: (context) => DialogManager(
+            child: widget,
           ),
         ),
-        initialRoute: AppRouter.PHOTO,
-        onGenerateRoute: AppRouter.generateRoute,
       ),
+      initialRoute: AppRouter.PHOTO,
+      onGenerateRoute: AppRouter.generateRoute,
     );
+//    );
   }
 }
