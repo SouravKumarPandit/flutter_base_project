@@ -5,10 +5,10 @@ import 'package:flutter/material.dart';
 class CLMessageUtil
 {
 
-  static int WARNING = 0;
-  static int ERROR = 1;
-  static int INFO = 2;
-  static int SUCCESS = 3;
+  static const int WARNING = 0;
+  static const int ERROR = 1;
+  static const int INFO = 2;
+  static const int SUCCESS = 3;
   /*
     * Alert Dialog Messages
     *

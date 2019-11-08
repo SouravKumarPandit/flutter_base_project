@@ -1,24 +1,36 @@
+import 'package:flutter_base_project/core/models/photos.dart';
+import 'package:flutter_base_project/core/services/base_service/api_constants.dart';
+import 'package:flutter_base_project/core/services/photo_services.dart';
 import 'package:flutter_base_project/core/viewmodels/base_model.dart';
+import 'package:flutter_base_project/core/viewmodels/views/view_interface.dart';
+
 const String LoadingIndicatorTitle = '^';
-class PhotoViewModel extends BaseModel {
+
+class PhotoViewModel extends BaseViewModel implements IPhotoView {
+  PhotoService photoService;
+
+  PhotoViewModel({this.photoService});
+
+  List<Photos> photos;
+
   Future<void> doSomeNetworkCall() async {
-    setBusy(true);
-   return await Future.delayed(Duration(seconds: 3)).then((_) {
-      setBusy(false);
+    showProgressbar();
+    return await Future.delayed(Duration(seconds: 3)).then((_) {
+      _items = List<String>.generate(25, (index) => 'Title $index');
+      taskLoaded = true;
+      hideProgressbar();
     });
   }
 
+  bool taskLoaded = false;
 
   static const int ItemRequestThreshold = 15;
 
   List<String> _items;
+
   List<String> get items => _items;
 
   int _currentPage = 0;
-
-  PhotoViewModel() {
-    _items = List<String>.generate(25, (index) => 'Title $index');
-  }
 
   Future handleItemCreated(int index) async {
     var itemPosition = index + 1;
@@ -31,7 +43,7 @@ class PhotoViewModel extends BaseModel {
       _currentPage = pageToRequest;
       _showLoadingIndicator();
 
-      await Future.delayed(Duration(seconds: 5));
+      await Future.delayed(Duration(seconds: 2));
       var newFetchedItems = List<String>.generate(
           15, (index) => 'Title page:$_currentPage item: $index');
       _items.addAll(newFetchedItems);
@@ -41,13 +53,23 @@ class PhotoViewModel extends BaseModel {
   }
 
   void _showLoadingIndicator() {
-    _items.add(LoadingIndicatorTitle);
     notifyListeners();
   }
 
   void _removeLoadingIndicator() {
-    _items.remove(LoadingIndicatorTitle);
     notifyListeners();
   }
 
+  @override
+  void onFetchPhotoList() async {
+//    doSomeNetworkCall();
+
+    var response = await photoService.getRequest(this, ApiConstants.GET_PHOTO);
+    photos = photosFromJson(response);
+  }
+
+  @override
+  void onLoadImageData() {
+    return null;
+  }
 }

@@ -3,7 +3,7 @@ import 'package:flutter_base_project/core/models/comment.dart';
 import 'package:flutter_base_project/core/services/api.dart';
 import 'package:flutter_base_project/core/viewmodels/base_model.dart';
 
-class CommentsModel extends BaseModel {
+class CommentsModel extends BaseViewModel {
   Api _api;
 
   CommentsModel({
@@ -20,7 +20,6 @@ class CommentsModel extends BaseModel {
 
   @override
   void dispose() {
-//    print('I have been disposed!!');
     super.dispose();
   }
 }

@@ -1,12 +1,12 @@
 import 'dart:convert';
+
 import 'package:flutter_base_project/core/models/comment.dart';
 import 'package:flutter_base_project/core/models/post.dart';
 import 'package:flutter_base_project/core/models/user.dart';
-import 'package:flutter_base_project/core/services/base_service/api_helper.dart';
 import 'package:http/http.dart' as http;
 
 /// The service responsible for networking requests
-class Api extends ApiBaseHelper {
+class Api{
   static const endpoint = 'https://jsonplaceholder.typicode.com';
 
   var client = new http.Client();

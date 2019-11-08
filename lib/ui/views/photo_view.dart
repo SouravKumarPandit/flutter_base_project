@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:flutter_base_project/core/viewmodels/views/photo_viewmodel.dart';
 import 'package:flutter_base_project/ui/base/base_state.dart';
-import 'package:flutter_base_project/ui/base/base_widget.dart';
 import 'package:flutter_base_project/ui/widgets/creation_aware_list_item.dart';
+import 'package:provider/provider.dart';
 
 class PhotoView extends StatefulWidget {
   @override
@@ -17,9 +17,9 @@ class _PhotoViewState extends BaseState<PhotoViewModel, PhotoView> {
   }
 
   @override
-  void initModel() {
-    model = PhotoViewModel();
-    model.doSomeNetworkCall();
+  void initViewModel() {
+    model = PhotoViewModel(photoService: Provider.of(context));
+//    model.doSomeNetworkCall();
   }
 
   Future<void> onPageRefresh() {
@@ -30,34 +30,55 @@ class _PhotoViewState extends BaseState<PhotoViewModel, PhotoView> {
   Widget stateWidgetBuilder(
       BuildContext context, ChildrenHolder childrenHolder) {
     return Scaffold(
-      appBar: AppBar(
-        title: childrenHolder.children[2] ?? Text("Photo"),
-      ),
-      body: BaseWidget(
-        model: PhotoViewModel(),
-        builder: (context, model, onModelReady) {
-          return GridView.builder(
-            gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                crossAxisCount: 3,
-                childAspectRatio: 0.8,
-                crossAxisSpacing: 0,
-                mainAxisSpacing: 0),
-            itemCount: this.model.items.length,
-            itemBuilder: gridItemBuilder,
-          );
-        },
-      ),
-    );
+        appBar: AppBar(
+          title: childrenHolder.children[2] ?? Text("Photo"),
+        ),
+        body: model.photos != null
+            ? GridView.builder(
+                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                    crossAxisCount: 3,
+                    childAspectRatio: 1,
+                    crossAxisSpacing: 0,
+                    mainAxisSpacing: 0),
+                itemCount: this.model.photos.length,
+                itemBuilder: gridItemBuilder,
+              )
+            : Center(
+                child: RaisedButton(
+                  onPressed: model.onFetchPhotoList,
+                  child: Text("GET PHOTO"),
+                ),
+              ));
   }
 
   Widget gridItemBuilder(BuildContext context, int index) {
-    return CreationAwareListItem(
-      itemCreated: () {
-        SchedulerBinding.instance
-            .addPostFrameCallback((duration) => model.handleItemCreated(index));
-      },
-      child: ListItem(
-        title: model.items[index],
+    return Card(
+      margin: EdgeInsets.all(0.5),
+      borderOnForeground: true,
+      child: Stack(
+        children: <Widget>[
+          Opacity(
+            opacity: 0.8,
+            child: Image.network(
+              model.photos[index].url,
+            ),
+          ),
+          Positioned(
+            bottom: 0,
+            left: 0,
+            right: 0,
+            child: Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Text(
+                "title $index",
+                style: TextStyle(color: Colors.white),
+                softWrap: true,
+                maxLines: 2,
+                overflow: TextOverflow.ellipsis,
+              ),
+            ),
+          ),
+        ],
       ),
     );
   }
@@ -72,30 +93,5 @@ class _PhotoViewState extends BaseState<PhotoViewModel, PhotoView> {
       Text("Hello 5"),
       Text("Hello 6"),
     ];
-  }
-}
-
-class ListItem extends StatelessWidget {
-  final String title;
-
-  const ListItem({Key key, this.title}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      decoration: BoxDecoration(
-          color: Colors.white,
-          boxShadow: [
-            BoxShadow(
-              blurRadius: 0,
-              color: Colors.grey[400],
-            ),
-          ],
-          borderRadius: BorderRadius.circular(5)),
-      child: title == LoadingIndicatorTitle
-          ? CircularProgressIndicator()
-          : Text(title),
-      alignment: Alignment.center,
-    );
   }
 }
