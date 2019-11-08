@@ -5,7 +5,6 @@ import 'package:flutter_base_project/managers/dialog_manager.dart';
 import 'package:flutter_base_project/ui/router.dart';
 
 void main() {
-//  Stetho.initialize();
   setupLocator();
   runApp(MyApp());
 }
@@ -19,9 +18,8 @@ class MyApp extends StatelessWidget {
           statusBarIconBrightness: Brightness.dark),
     );
 
-//    return MultiProvider(
-//      providers: providers,
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       title: 'Flutter Demo',
       theme: ThemeData(
         fontFamily: 'Montserrat',
@@ -36,6 +34,5 @@ class MyApp extends StatelessWidget {
       initialRoute: AppRouter.PHOTO,
       onGenerateRoute: AppRouter.generateRoute,
     );
-//    );
   }
 }

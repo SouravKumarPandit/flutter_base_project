@@ -1,5 +1,4 @@
 import 'package:flutter_base_project/core/models/photos.dart';
-import 'package:flutter_base_project/core/services/base_service/api_constants.dart';
 import 'package:flutter_base_project/core/services/photo_services.dart';
 import 'package:flutter_base_project/core/viewmodels/base_model.dart';
 import 'package:flutter_base_project/core/viewmodels/views/view_interface.dart';

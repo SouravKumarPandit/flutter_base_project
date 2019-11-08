@@ -1,10 +1,8 @@
-import 'dart:convert';
-
+import 'dart:io';
 import 'package:flutter_base_project/core/services/base_service/api_constants.dart';
 import 'package:flutter_base_project/core/services/base_service/api_exception.dart';
 import 'package:flutter_base_project/core/viewmodels/views/view_interface.dart';
 import 'package:http/http.dart' as http;
-import 'dart:io';
 
 class ApiRepository {
   Future<dynamic> getRequest(IBaseView baseView, String url) async {
@@ -16,6 +14,7 @@ class ApiRepository {
       baseView.hideProgressbar();
     } on SocketException {
       baseView.hideProgressbar();
+      baseView.showError(-1, "No Internet connection or methord does\'t exist");
       throw FetchDataException('No Internet connection or methord does\'t exist');
     }
     return responseJson;

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_base_project/core/models/alert_request.dart';
 import 'package:flutter_base_project/core/models/alert_response.dart';
 import 'package:flutter_base_project/core/services/dialog_service.dart';
+import 'package:flutter_base_project/locator.dart';
 import 'package:rflutter_alert/rflutter_alert.dart';
 
 class DialogManager extends StatefulWidget {
@@ -13,12 +14,11 @@ class DialogManager extends StatefulWidget {
 }
 
 class _DialogManagerState extends State<DialogManager> {
-  DialogService _dialogService;
+  DialogService _dialogService=locator<DialogService>();
 
   @override
   void initState() {
     super.initState();
-    _dialogService = new DialogService();
     _dialogService.registerDialogListener(_showDialog);
   }
 
@@ -32,11 +32,12 @@ class _DialogManagerState extends State<DialogManager> {
         context: context,
         title: request.title,
         desc: request.description,
+        content: Icon(Icons.signal_wifi_off,size: 50,color: Colors.grey,),
         closeFunction: () =>
             _dialogService.dialogComplete(AlertResponse(confirmed: false)),
         buttons: [
           DialogButton(
-            child: Text(request.buttonTitle),
+            child: Text(request.buttonTitle,style: TextStyle(color: Colors.white,fontSize: 18),),
             onPressed: () {
               _dialogService.dialogComplete(AlertResponse(confirmed: true));
               Navigator.of(context).pop();
