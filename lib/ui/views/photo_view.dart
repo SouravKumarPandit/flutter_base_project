@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_base_project/core/services/photo_services.dart';
+import 'package:flutter_base_project/core/models/user.dart';
 import 'package:flutter_base_project/core/viewmodels/views/photo_viewmodel.dart';
-import 'package:flutter_base_project/locator.dart';
 import 'package:flutter_base_project/ui/base/base_state.dart';
 
 class PhotoView extends StatefulWidget {
+  final User user;
+  PhotoView(this.user);
+
   @override
   _PhotoViewState createState() => _PhotoViewState();
 }
@@ -30,7 +32,7 @@ class _PhotoViewState extends BaseState<PhotoViewModel, PhotoView> {
       BuildContext context, ChildrenHolder childrenHolder) {
     return Scaffold(
         appBar: AppBar(
-          title: childrenHolder.children[2] ?? Text("Photo"),
+          title: childrenHolder.children[0] ?? Text("Photo"),
         ),
         body: viewModel.photos != null
             ? GridView.builder(
@@ -85,12 +87,7 @@ class _PhotoViewState extends BaseState<PhotoViewModel, PhotoView> {
   @override
   List<Widget> reuseChildren() {
     return [
-      Text("Hello 1"),
-      Text("Hello 2"),
-      Text("Hello 3"),
-      Text("Hello 4"),
-      Text("Hello 5"),
-      Text("Hello 6"),
+      Text("Hello ${widget.user.name}"),
     ];
   }
 }

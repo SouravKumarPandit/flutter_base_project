@@ -28,7 +28,7 @@ class PostView extends StatelessWidget {
             ),
             UIHelper.verticalSpaceMedium,
             Text(post.body),
-            Comments(post.id)
+            Expanded(flex :1,child: Comments(post.id))
           ],
         ),
       ),
