@@ -31,6 +31,7 @@ class BaseViewModel extends ChangeNotifier implements IBaseView{
 
   @override
   void showError(int iStatusCode, String sMessage) {
+    setBusy(false);
     showInternetFailed();
   }
 

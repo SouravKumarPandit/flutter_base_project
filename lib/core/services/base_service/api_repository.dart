@@ -35,6 +35,7 @@ class ApiRepository {
         throw UnauthorisedException(response.body.toString());
       case 500:
       default:
+
         baseView.showError(500,
             "Error occured while Communication with Server with StatusCode : ${response.statusCode}");
         throw FetchDataException(
