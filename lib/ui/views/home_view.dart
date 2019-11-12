@@ -29,7 +29,7 @@ class HomeView extends StatelessWidget {
           ),
           UIHelper.verticalSpaceSmall,
           Expanded(
-            child: Posts(),
+            child: Posts(Provider.of<User>(context)?.id),
           )
         ],
       ),

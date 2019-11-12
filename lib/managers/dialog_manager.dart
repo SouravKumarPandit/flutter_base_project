@@ -3,7 +3,6 @@ import 'package:flutter_base_project/core/models/alert_request.dart';
 import 'package:flutter_base_project/core/models/alert_response.dart';
 import 'package:flutter_base_project/core/services/dialog_service.dart';
 import 'package:flutter_base_project/locator.dart';
-import 'package:rflutter_alert/rflutter_alert.dart';
 
 class DialogManager extends StatefulWidget {
   final Widget child;
@@ -14,12 +13,12 @@ class DialogManager extends StatefulWidget {
 }
 
 class _DialogManagerState extends State<DialogManager> {
-  DialogService _dialogService=locator<DialogService>();
+  DialogService _dialogService = locator<DialogService>();
 
   @override
   void initState() {
     super.initState();
-    _dialogService.registerDialogListener(_showDialog);
+    _dialogService.registerDialogListener(_showMaterialDialog);
   }
 
   @override
@@ -27,22 +26,25 @@ class _DialogManagerState extends State<DialogManager> {
     return widget.child;
   }
 
-  void _showDialog(AlertRequest request) {
-    Alert(
+  void _showMaterialDialog(AlertRequest request) {
+    showDialog(
         context: context,
-        title: request.title,
-        desc: request.description,
-        content: Icon(Icons.signal_wifi_off,size: 50,color: Colors.grey,),
-        closeFunction: () =>
-            _dialogService.dialogComplete(AlertResponse(confirmed: false)),
-        buttons: [
-          DialogButton(
-            child: Text(request.buttonTitle,style: TextStyle(color: Colors.white,fontSize: 18),),
-            onPressed: () {
-              _dialogService.dialogComplete(AlertResponse(confirmed: true));
-              Navigator.of(context).pop();
-            },
-          )
-        ]).show();
+        builder: (context) {
+          return AlertDialog(
+            shape: const RoundedRectangleBorder(
+                borderRadius: BorderRadius.all(Radius.circular(10))),
+            title: Text(request.title),
+            content: Text(request.description),
+            actions: <Widget>[
+              FlatButton(
+                onPressed: () {
+                  _dialogService.dialogComplete(AlertResponse(confirmed: true));
+                  Navigator.of(context).pop();
+                },
+                child: Text('OK'),
+              )
+            ],
+          );
+        });
   }
 }

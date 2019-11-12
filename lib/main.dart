@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_base_project/core/models/user.dart';
+import 'package:flutter_base_project/core/services/authentication_service.dart';
 import 'package:flutter_base_project/locator.dart';
 import 'package:flutter_base_project/managers/dialog_manager.dart';
 import 'package:flutter_base_project/ui/router.dart';
+import 'package:provider/provider.dart';
 
 void main() {
   setupLocator();
@@ -18,21 +21,26 @@ class MyApp extends StatelessWidget {
           statusBarIconBrightness: Brightness.dark),
     );
 
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      title: 'Flutter Demo',
-      theme: ThemeData(
-        fontFamily: 'Montserrat',
-      ),
-      builder: (context, widget) => Navigator(
-        onGenerateRoute: (settings) => MaterialPageRoute(
-          builder: (context) => DialogManager(
-            child: widget,
+    return  StreamProvider<User>(
+      initialData: User.initial(),
+      builder: (context) => locator<AuthenticationService>().user,
+      child: MaterialApp(
+        debugShowCheckedModeBanner: false,
+        title: 'Flutter Demo',
+
+        theme: ThemeData(
+          fontFamily: 'Montserrat',
+        ),
+        builder: (context, widget) => Navigator(
+          onGenerateRoute: (settings) => MaterialPageRoute(
+            builder: (context) => DialogManager(
+              child: widget,
+            ),
           ),
         ),
+        initialRoute: AppRouter.LOGIN,
+        onGenerateRoute: AppRouter.generateRoute,
       ),
-      initialRoute: AppRouter.PHOTO,
-      onGenerateRoute: AppRouter.generateRoute,
     );
   }
 }

@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_base_project/core/services/dialog_service.dart';
-
 import 'package:flutter_base_project/core/viewmodels/views/view_interface.dart';
 import 'package:flutter_base_project/locator.dart';
 
@@ -47,10 +46,7 @@ class BaseViewModel extends ChangeNotifier implements IBaseView{
         description: 'An error has occurred, please check your connection and try agian later .');
 
     if (dialogResult.confirmed) {
-//      print('User has confirmed');
-
     } else {
-//      print('User cancelled the dialog');
     }
   }
 

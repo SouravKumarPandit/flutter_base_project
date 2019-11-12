@@ -17,7 +17,7 @@ class _PhotoViewState extends BaseState<PhotoViewModel, PhotoView> {
 
   @override
   void initViewModel() {
-    model = PhotoViewModel(photoService: locator<PhotoService>());
+    viewModel = PhotoViewModel();
 //    model.doSomeNetworkCall();
   }
 
@@ -32,19 +32,19 @@ class _PhotoViewState extends BaseState<PhotoViewModel, PhotoView> {
         appBar: AppBar(
           title: childrenHolder.children[2] ?? Text("Photo"),
         ),
-        body: model.photos != null
+        body: viewModel.photos != null
             ? GridView.builder(
                 gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                     crossAxisCount: 3,
                     childAspectRatio: 1,
                     crossAxisSpacing: 0,
                     mainAxisSpacing: 0),
-                itemCount: this.model.photos.length,
+                itemCount: this.viewModel.photos.length,
                 itemBuilder: gridItemBuilder,
               )
             : Center(
                 child: RaisedButton(
-                  onPressed: model.onFetchPhotoList,
+                  onPressed: viewModel.onFetchPhotoList,
                   child: Text("GET PHOTO"),
                 ),
               ));
@@ -59,7 +59,7 @@ class _PhotoViewState extends BaseState<PhotoViewModel, PhotoView> {
           Opacity(
             opacity: 0.8,
             child: Image.network(
-              model.photos[index].url,
+              viewModel.photos[index].url,
             ),
           ),
           Positioned(

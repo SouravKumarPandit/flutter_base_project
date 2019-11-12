@@ -11,10 +11,8 @@ const String initialRoute = "login";
 class AppRouter {
   static const String HOME = '/';
   static const String LOGIN = '/login';
-  static const String PRACTICE = '/practice';
   static const String POST = '/post';
-
-  static const String PHOTO="/";
+  static const String PHOTO="/photo";
 
   static Route<dynamic> generateRoute(RouteSettings settings) {
     switch (settings.name) {
@@ -23,8 +21,6 @@ class AppRouter {
       case HOME:
         return MaterialPageRoute(builder: (_) => HomeView());
       case LOGIN:
-        return MaterialPageRoute(builder: (_) => LoginView());
-      case PRACTICE:
         return MaterialPageRoute(builder: (_) => LoginView());
       case POST:
         var post = settings.arguments as Post;
