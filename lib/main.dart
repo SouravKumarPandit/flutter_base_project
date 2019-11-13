@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_base_project/core/models/user.dart';
-import 'package:flutter_base_project/core/services/authentication_service.dart';
 import 'package:flutter_base_project/locator.dart';
 import 'package:flutter_base_project/managers/dialog_manager.dart';
+import 'package:flutter_base_project/managers/session_manager.dart';
 import 'package:flutter_base_project/ui/router.dart';
 import 'package:provider/provider.dart';
 
@@ -23,7 +23,7 @@ class MyApp extends StatelessWidget {
 
     return  StreamProvider<User>(
       initialData: User.initial(),
-      builder: (context) => locator<AuthenticationService>().user,
+      builder: (context) => locator<SessionManager>().user,
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
         title: 'Flutter Demo',

@@ -24,7 +24,10 @@ class DialogService {
   }
 
   void dialogComplete(AlertResponse response) {
-    _dialogCompleter.complete(response);
-    _dialogCompleter = null;
+
+    if(_dialogCompleter.isCompleted){
+      return ;
+    }
+    if (response != null) _dialogCompleter.complete(response);
   }
 }

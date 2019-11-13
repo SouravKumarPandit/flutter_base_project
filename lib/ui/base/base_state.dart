@@ -32,6 +32,19 @@ abstract class BaseState<M extends BaseViewModel, T extends StatefulWidget>
 
   Widget _loadingProgressBuilder(
       BuildContext context, M baseModel, Widget childrenHolder) {
+ /*   Widget stateWidget;
+    try {
+      stateWidget = stateWidgetBuilder(context, childrenHolder);
+    } catch (exception) {
+      viewModel.showError(8080, exception.toString());
+      stateWidget = Container(
+        color: Colors.white,
+        child: Icon(
+          Icons.error_outline,
+          color: const Color(0xFFFFCDD2),
+        ),
+      );
+    }*/
     return LoadingProgressWidget(
       showIndicator: viewModel.busy,
       child: stateWidgetBuilder(context, childrenHolder),

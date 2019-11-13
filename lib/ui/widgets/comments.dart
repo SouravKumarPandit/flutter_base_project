@@ -3,7 +3,6 @@ import 'package:flutter_base_project/core/models/comment.dart';
 import 'package:flutter_base_project/core/models/user.dart';
 import 'package:flutter_base_project/core/viewmodels/widgets/comments_model.dart';
 import 'package:flutter_base_project/ui/base/base_state.dart';
-import 'package:flutter_base_project/ui/base/base_widget.dart';
 import 'package:flutter_base_project/ui/router.dart';
 import 'package:flutter_base_project/ui/shared/app_colors.dart';
 import 'package:flutter_base_project/ui/shared/ui_helpers.dart';

@@ -49,7 +49,7 @@ class _PostsState extends BaseState<PostsViewModel, Posts> {
                 onTap: () {
                   viewModel.getPosts(widget.id);
                 },
-                child: Text('No data')),
+                child: Icon(Icons.network_wifi ,color: Color(0xFFEEEEEE))),
           );
   }
 }

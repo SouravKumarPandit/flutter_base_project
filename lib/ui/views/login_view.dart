@@ -38,14 +38,24 @@ class _LoginViewState extends BaseState<LoginViewModel, LoginView> {
                 'Login',
                 style: TextStyle(color: Colors.black),
               ),
-              onPressed: () async {
-                var loginSuccess = await viewModel.login(_controller.text);
-                if (loginSuccess) {
-                  Navigator.pushNamed(context, AppRouter.HOME);
-                }
+              onPressed: () {
+                print("------------------------------------------------------------------------------");
+                viewModel.authenticateUser(_controller.text);
+                viewModel.isValidUser.listen(navigateToHomePage).onError(showInvalidUser);
               },
             )
           ],
         ));
+  }
+int times=0;
+  void navigateToHomePage(bool event) {
+    times++;
+    if (event)
+      Navigator.pushNamed(context, AppRouter.HOME);
+  }
+
+  showInvalidUser(error) {
+    viewModel.showError(-101,
+        "Sorry but you are not the valid user try number between 2 to 10");
   }
 }

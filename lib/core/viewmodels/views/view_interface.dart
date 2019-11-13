@@ -7,9 +7,13 @@
    void showProgressbar();
    void hideProgressbar();
  }
- ///used in <a href="photo_viewmodel.dart">PhotoViewModel.class</a>
+ ///used in <a href="PhotoViewModel.java">PhotoViewModel.java</a>
  abstract class IPhotoView extends IBaseView{
    void  onFetchPhotoList();
    void  onLoadImageData();
-
  }
+
+ abstract class ILoginView extends IBaseView{
+   void authenticateUser(String userId);
+ }
+

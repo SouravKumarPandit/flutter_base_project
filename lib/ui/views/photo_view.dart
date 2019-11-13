@@ -5,7 +5,7 @@ import 'package:flutter_base_project/ui/base/base_state.dart';
 
 class PhotoView extends StatefulWidget {
   final User user;
-  PhotoView(this.user);
+  PhotoView({this.user});
 
   @override
   _PhotoViewState createState() => _PhotoViewState();
@@ -20,11 +20,7 @@ class _PhotoViewState extends BaseState<PhotoViewModel, PhotoView> {
   @override
   void initViewModel() {
     viewModel = PhotoViewModel();
-//    model.doSomeNetworkCall();
-  }
-
-  Future<void> onPageRefresh() {
-    return Future.delayed(Duration(seconds: 3));
+//    viewModel.onFetchPhotoList();
   }
 
   @override
@@ -34,8 +30,9 @@ class _PhotoViewState extends BaseState<PhotoViewModel, PhotoView> {
         appBar: AppBar(
           title: childrenHolder.children[0] ?? Text("Photo"),
         ),
-        body: viewModel.photos != null
-            ? GridView.builder(
+        body:
+        viewModel.photos != null?
+        GridView.builder(
                 gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                     crossAxisCount: 3,
                     childAspectRatio: 1,
@@ -49,7 +46,8 @@ class _PhotoViewState extends BaseState<PhotoViewModel, PhotoView> {
                   onPressed: viewModel.onFetchPhotoList,
                   child: Text("GET PHOTO"),
                 ),
-              ));
+              ),
+    );
   }
 
   Widget gridItemBuilder(BuildContext context, int index) {
@@ -87,7 +85,7 @@ class _PhotoViewState extends BaseState<PhotoViewModel, PhotoView> {
   @override
   List<Widget> reuseChildren() {
     return [
-      Text("Hello ${widget.user.name}"),
+      Text('Hello ${widget.user?.name}'),
     ];
   }
 }
