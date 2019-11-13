@@ -4,13 +4,16 @@ import 'package:flutter_base_project/core/viewmodels/views/view_interface.dart';
 class LiveData<T> {
   T _value;
   IBaseView _viewModel;
+  bool _toInvalidate = true;
 
   T get value => _value; //  M _observer;
   ValueChanged<T> _onChange;
 
-  void listener(IBaseView viewModel, ValueChanged<T> listener) {
+  void listener(IBaseView viewModel, ValueChanged<T> listener,
+      [bool toInvalidate = true]) {
     this._viewModel = viewModel;
     this._onChange = listener;
+    this._toInvalidate = toInvalidate;
   }
 
   void removeListener(IBaseView viewModel) {
@@ -22,7 +25,7 @@ class LiveData<T> {
     if (_onChange != null) {
       _onChange(value);
     }
-    if (_viewModel != null) _viewModel.invalidate();
+    if (_viewModel != null && _toInvalidate == true) _viewModel.invalidate();
   }
 
   LiveData({T value}) {
