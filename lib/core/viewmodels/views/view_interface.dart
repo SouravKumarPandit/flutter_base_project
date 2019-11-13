@@ -6,6 +6,7 @@
    void handleResponse(Object responseObject);
    void showProgressbar();
    void hideProgressbar();
+   void invalidate();
  }
  ///used in <a href="PhotoViewModel.java">PhotoViewModel.java</a>
  abstract class IPhotoView extends IBaseView{

@@ -61,4 +61,9 @@ class BaseViewModel extends ChangeNotifier implements IBaseView {
     if (dialogResult.confirmed) {
     } else {}
   }
+
+  @override
+  void invalidate() {
+   notifyListeners();
+  }
 }
