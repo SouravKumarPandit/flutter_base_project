@@ -1,20 +1,24 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_base_project/core/viewmodels/base_model.dart';
+import 'package:flutter_base_project/ui/base/widget_size_config.dart';
 import 'package:flutter_ui_control/indicator/progress_bar_widget.dart';
 import 'package:provider/provider.dart';
 
 abstract class BaseState<M extends BaseViewModel, T extends StatefulWidget>
     extends State<T> {
   M viewModel;
+  SizeConfig sizeConfig;
 
   @override
   void initState() {
     super.initState();
+    sizeConfig = new SizeConfig();
     initViewModel();
   }
 
   @override
   Widget build(BuildContext context) {
+    sizeConfig.init(context);
     return ChangeNotifierProvider<M>(
       create: (context) => viewModel,
       child: Consumer<M>(
