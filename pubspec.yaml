@@ -1,16 +1,6 @@
 name: flutter_base_project
 description: A new Flutter application.
 
-# The following defines the version and build number for your application.
-# A version number is three numbers separated by dots, like 1.2.43
-# followed by an optional build number separated by a +.
-# Both the version and the builder number may be overridden in flutter
-# build by specifying --build-name and --build-number, respectively.
-# In Android, build-name is used as versionName while build-number used as versionCode.
-# Read more about Android versioning at https://developer.android.com/studio/publish/versioning
-# In iOS, build-name is used as CFBundleShortVersionString while build-number used as CFBundleVersion.
-# Read more about iOS versioning at
-# https://developer.apple.com/library/archive/documentation/General/Reference/InfoPlistKeyReference/Articles/CoreFoundationKeys.html
 version: 1.0.0+1
 
 environment:
@@ -20,8 +10,6 @@ dependencies:
   flutter:
     sdk: flutter
 
-  # The following adds the Cupertino Icons font to your application.
-  # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^0.1.2
   provider: ^3.1.0+1
   get_it: ^3.0.3
@@ -31,14 +19,10 @@ dependencies:
   flushbar: ^1.9.1
   rxdart: ^0.22.6
   dio: ^3.0.4
-  #  rflutter_alert: ^1.0.3
   #  connectivity: ^0.4.5
-
-
-
-#  moor_flutter: ^2.0.0
-#  path_provider: ^1.3.0
-#  sqflite: ^1.1.7+1
+  #  moor_flutter: ^2.0.0
+  #  path_provider: ^1.3.0
+  #  sqflite: ^1.1.7+1
 
   flutter_ui_control:
    path: E:/VrlocalProject/BaseProjects/flutter_ui_control

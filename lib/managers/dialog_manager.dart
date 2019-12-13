@@ -27,24 +27,57 @@ class _DialogManagerState extends State<DialogManager> {
   }
 
   void _showMaterialDialog(AlertRequest request) {
-    showDialog(
+    if (request is AlertWidgetRequest) {
+      showDialog(
+        useRootNavigator: true,
         context: context,
         builder: (context) {
           return AlertDialog(
             shape: const RoundedRectangleBorder(
-                borderRadius: BorderRadius.all(Radius.circular(10))),
-            title: Text(request.title),
-            content: Text(request.description),
-            actions: <Widget>[
-              FlatButton(
-                onPressed: () {
-                  _dialogService.dialogComplete(AlertResponse(confirmed: true));
-                  Navigator.of(context).pop();
-                },
-                child: Text('OK'),
-              )
-            ],
+                borderRadius: BorderRadius.all(Radius.circular(8))),
+            title: Stack(
+              children: <Widget>[
+                request.titleWidget,
+                Positioned(
+                    right: 0,
+                    top: 0,
+                    child: InkWell(
+                      child: Icon(Icons.clear),
+                      onTap: onDialogClose,
+                    ))
+              ],
+            ),
+            content: request.contentWidget,
+            actions: request.buttonTitleWidget,
           );
-        });
+        },
+      );
+    } else {
+      showDialog(
+          context: context,
+          builder: (context) {
+            return AlertDialog(
+              shape: const RoundedRectangleBorder(
+                  borderRadius: BorderRadius.all(Radius.circular(10))),
+              title: Text(request.title),
+              content: Text(request.description),
+              actions: <Widget>[
+                FlatButton(
+                  onPressed: () {
+                    _dialogService
+                        .dialogComplete(AlertResponse(confirmed: true));
+                    Navigator.of(context).pop();
+                  },
+                  child: Text('OK'),
+                )
+              ],
+            );
+          });
+    }
+  }
+
+  void onDialogClose() {
+    _dialogService.customDialogComplete(AlertWidgetResponse(confirmed: false));
+    Navigator.of(context).pop();
   }
 }

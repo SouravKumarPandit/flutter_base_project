@@ -19,6 +19,7 @@ void setupLocator() {
   locator.registerFactory(() => AuthenticationService());
   locator.registerFactory(() => LoginService());
   locator.registerFactory(() => LoginViewModel());
+
   locator.registerFactory(() => PhotoViewModel());
   locator.registerFactory(() => CommentsModel());
   locator.registerFactory(() => PhotoService());

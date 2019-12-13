@@ -34,7 +34,7 @@ class BaseViewModel extends ChangeNotifier implements IBaseView {
   void showError(int iStatusCode, String sMessage) {
     setBusy(false);
     if (iStatusCode < -1) {
-      showCustomErrorMessage(sMessage);
+      showCustomErrorMessage(message: sMessage);
     } else
       showInternetFailed();
   }
@@ -44,9 +44,9 @@ class BaseViewModel extends ChangeNotifier implements IBaseView {
     setBusy(true);
   }
 
-  Future showCustomErrorMessage(String message) async {
+  Future showCustomErrorMessage({String title='Ohh No!',String message=''}) async {
     var dialogResult =
-        await _dialogService.showDialog(title: 'Ohh No!', description: message);
+        await _dialogService.showDialog(title: title, description: message);
 
     if (dialogResult.confirmed) {
     } else {}

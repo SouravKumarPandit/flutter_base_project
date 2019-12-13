@@ -23,7 +23,7 @@ class MyApp extends StatelessWidget {
 
     return  StreamProvider<User>(
       initialData: User.initial(),
-      builder: (context) => locator<SessionManager>().user,
+      create: (context) => locator<SessionManager>().user,
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
         title: 'Flutter Demo',
